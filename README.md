@@ -20,7 +20,7 @@ It showcases how to combine cloud-native tools for scalable, maintainable, and p
 | Power BI | Dashboards and reporting layer — visualizes processed data for analytics & insights |
 
 #  Architecture Diagram 
-![Data Architecture](https://github.com/dosibhatlanirmalaaiswarya-bit/sql-data-ware-house-project/blob/bece993879f71a8ce3e7729b359324aa4f210b07/docs/Data%20Architecture.png))
+![Data Architecture](https://github.com/dosibhatlanirmalaaiswarya-bit/Azure-Based-ETL-Pipeline-Using-ADF-Databricks/blob/df76e10aa9acfe53cb2dec9966280151ac900df6/Azure%20Architecture%20Diagram.jpg?raw=true)
 
 ## Features  
 - Modular ETL/ELT pipeline with layered data storage (raw → processed → analytics)  
