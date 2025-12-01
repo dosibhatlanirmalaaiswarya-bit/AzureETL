@@ -1,36 +1,54 @@
-# End-to-End Azure Data Engineering Project  🚀  
+# End-to-End Azure Data Engineering Project 🚀
 
-A full-stack data engineering pipeline built with Azure Data Factory (ADF), Databricks, and Power BI. The solution ingests data, transforms it through a robust ETL/ELT flow, and ultimately produces dashboards/analytics for decision-making.  
+A full-stack data engineering pipeline built with Azure Data Factory (ADF), Azure Databricks, and Azure Data Lake, designed to ingest, transform, and deliver analytics-ready data for downstream BI and ML use cases. This project focuses on production-style patterns: orchestration, medallion architecture, and scalable data transformations. 
 
-## Overview  
-This project implements an end-to-end data engineering workflow that:  
-- Ingests raw data (can be from various sources: CSV, databases, streaming, etc.)  
-- Processes/cleans/transforms data using Databricks notebooks  
-- Loads transformed data into managed tables / data warehouse layers (e.g., bronze → silver → gold)  
-- Provides visualization and analytics via Power BI dashboards  
+---
 
-It showcases how to combine cloud-native tools for scalable, maintainable, and production-ready data pipelines.  
+## Business Problem
 
-## Architecture / Components  
-| Component | Responsibility |
-|----------|----------------|
-| Azure Data Factory (ADF) | Orchestrates ingestion, scheduling, and data movements |
-| Databricks | Data transformations: cleansing, aggregations, feature engineering |
-| Data Warehouse / Lake (e.g. Azure Storage / Delta Lake) | Storage of raw and processed data (bronze/silver/gold layers) |
-| Power BI | Dashboards and reporting layer — visualizes processed data for analytics & insights |
+Analytics teams often work with scattered source systems (ERP, CRM, flat files, APIs) and manual data refreshes, making it difficult to maintain a single, trusted view of business performance. This project demonstrates how to use Azure-native tools to automate ingestion, transformations, and delivery of curated data layers for reliable reporting and advanced analytics.
 
-#  Architecture Diagram 
-![Data Architecture](https://github.com/dosibhatlanirmalaaiswarya-bit/Azure-Based-ETL-Pipeline-Using-ADF-Databricks/blob/df76e10aa9acfe53cb2dec9966280151ac900df6/Azure%20Architecture%20Diagram.jpg?raw=true)
+---
 
-## Features  
-- Modular ETL/ELT pipeline with layered data storage (raw → processed → analytics)  
-- Scalable using cloud infrastructure (Azure + Databricks)  
-- Clear orchestration of tasks (ingest, transform, load, visualize)  
-- Suitable for batch or real-time (or scheduled) data workflows  
-- Easy to extend: add new data sources, transformations, or dashboards  
+## Technical Overview
 
-## Prerequisites  
-- Azure account with permissions to create ADF pipelines, Databricks workspace, and storage resources  
-- Databricks runtime compatible with project’s code (e.g. Python/Scala/Spark version)  
-- Power BI account (Pro or higher) for dashboard deployment  
-- (Optional) Local development environment if using local notebooks or testing  
+This repository implements an end-to-end Azure data engineering workflow that:
+
+- Ingests raw data from one or more source systems (e.g., CSV/Blob storage, operational databases, APIs) into a raw “bronze” layer.
+- Cleanses, validates, and transforms data in Azure Databricks using Spark, producing curated “silver” and “gold” tables.
+- Stores data in a lakehouse-style architecture (Azure Data Lake / Delta Lake) to support batch analytics and potential ML workloads.
+- Exposes modeled gold-layer tables to Power BI (or any BI tool) for KPI tracking and business dashboards. [attached_file:1]
+
+The emphasis is on reusable patterns (orchestration, layering, data quality) rather than any single dataset.
+
+---
+
+## Architecture
+![DataArchitecture](https://github.com/dosibhatlanirmalaaiswarya-bit/Azure-Based-ETL-Pipeline-Using-ADF-Databricks/blob/081145f8fa6e4921ba4f6a7ab98054a8a74e9cd9/Azure%20Architecture%20Diagram.jpg)
+### Components
+
+| Component                        | Responsibility                                                                 |
+|----------------------------------|-------------------------------------------------------------------------------|
+| Azure Data Factory (ADF)        | Orchestrates pipelines, scheduling, triggers, and data movement              |
+| Azure Databricks                | Executes PySpark notebooks for cleansing, joins, aggregations, business logic|
+| Azure Data Lake / Delta Lake    | Stores bronze, silver, and gold data layers with partitioning as needed      |
+| Power BI (optional)             | Connects to gold tables/views for dashboards and self-service analytics      | 
+
+### Medallion Architecture
+
+- Bronze: Raw ingested data, minimally processed, stored as-is from source.
+- Silver: Cleaned, conformed data with standardized types, deduplication, and basic business rules.
+- Gold: Aggregated, analytics-ready tables optimized for reporting and KPI monitoring.
+
+---
+
+## Data Engineering Features
+
+- End-to-end ETL/ELT pipeline built on Azure (ADF + Databricks + Data Lake).
+- Medallion architecture (Bronze → Silver → Gold) for clear lineage and separation of concerns.
+- Parameterized ADF pipelines for reusable ingestion patterns and environment-specific configuration.
+- PySpark transformations for:
+  - Data cleansing and type casting.
+  - Joins across multiple sources.
+  - Incremental loads and aggregations for KPI
+
